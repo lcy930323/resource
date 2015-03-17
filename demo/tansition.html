@@ -1,0 +1,45 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>切换插件</title>
+    <link rel="stylesheet" href="../css/base.css"/>
+    <script src="../js/lib/jquery-1.11.1.min.js"></script>
+    <script src="../js/lib/sea.js"></script>
+    <script>
+        seajs.config({
+            base : '../js'
+        })
+        $(function(){
+            seajs.use('plugin/transition.js',function(){
+                $("#wrap").transition({
+                    speed : 1200,           // 单位毫秒
+                    mode  : 'horizontal',   // vertical
+                    "3d"  : true,
+                    onStop : function(e, index){
+                        console.log && console.log(index)
+                    }
+                });
+
+            });
+        })
+
+    </script>
+    <style>
+        #wrap {
+            position: relative;
+            width: 500px;
+            height: 500px;
+            border: 1px solid #000;
+        }
+    </style>
+</head>
+<body>
+    <div id="wrap">
+        <div class="T-item" style="background-color: #369;">1111111111111111111111</div>
+        <div class="T-item" style="background-color: #969;">22222222222222</div>
+        <div class="T-item" style="background-color: #c69;">322333333333333333333</div>
+        <div class="T-item" style="background-color: #069;">433444444444444444444</div>
+    </div>
+</body>
+</html>

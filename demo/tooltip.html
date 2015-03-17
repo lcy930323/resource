@@ -1,0 +1,45 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>tooltip插件</title>
+    <link rel="stylesheet" href="../css/base.css"/>
+    <script src="../js/lib/jquery-1.11.1.min.js"></script>
+    <script src="../js/lib/sea.js"></script>
+    <script>
+        seajs.config({
+            base : '../js'
+        })
+        $(function(){
+            seajs.use('plugin/tooltip.js',function(){
+                $(".tooltip1").tooltip({
+                    content : '123456~~',
+                    align   : 'bottom center'
+                });
+                $(".tooltip2").tooltip({
+                    content : '<h1>html片断</h1><p>ppppppppppppp</p>',
+                    align   : 'right center'
+                });
+            });
+        })
+    </script>
+    <style>
+    .tooltip1,
+    .tooltip2 {
+        background-color: #fff;
+        left: 100px;
+        top: 100px;
+        display: block;
+        position: absolute;
+    }
+
+    .tooltip2 {
+        top: 200px;
+    }
+    </style>
+</head>
+<body>
+    <span class="tooltip1">tooltip1</span>
+    <span class="tooltip2">html片断</span>
+</body>
+</html>

@@ -1,0 +1,45 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>整屏切换插件</title>
+    <link rel="stylesheet" href="../css/base.css"/>
+    <script src="../js/lib/jquery-1.11.1.min.js"></script>
+    <script src="../js/lib/sea.js"></script>
+    <script>
+        seajs.config({
+            base : '../js'
+        })
+        $(function(){
+            seajs.use('plugin/transition.js',function(){
+                $("#wrap").transition({
+                    itmeCls : '.item'
+                });
+            });
+        })
+    </script>
+    <style>
+        #wrap {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+        }
+
+        .item {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+        }
+    </style>
+</head>
+<body>
+<div id="wrap">
+    <div class="item" style="background: #c9c9c9;">1</div>
+    <div class="item" style="background: #ffad09;">2</div>
+    <div class="item" style="background: #c6c6c6;">3</div>
+    <div class="item" style="background: #1e485e;">4</div>
+</div>
+</body>
+</html>

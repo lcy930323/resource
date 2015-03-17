@@ -1,0 +1,159 @@
+@color: #333;
+@background: #FFF;
+@fontSize: 12px;
+@fontFamily: "Microsoft Yahei", tahoma, arial, Hiragino Sans GB, "\5b8b\4f53", sans-serif;
+@formFontFamily: "Microsoft Yahei", tahoma, arial, Hiragino Sans GB, "\5b8b\4f53", sans-serif;
+
+// 清除常用HTMl标签 margin 属性值
+body,
+form, fieldset, input, select, textarea, button,
+h1, h2, h3, h4, h5, h6,
+p,
+ul, ol, dl, dd,
+pre,
+blockquote,
+hr {
+    margin: 0;
+}
+
+// 清除常用HTMl标签 padding 属性值
+fieldset, legend, button,
+ul, ol {
+    padding: 0;
+}
+
+// 清除常用HTMl标签 border 属性值
+frame, iframe, // IE6-8下，需将属性frameborder的值设为0才能清除2px的边框，其他浏览器添加以下样式即可清除
+img, // 清除IE下a标签内img标签的边框
+fieldset {
+    border: none;
+}
+
+// IE6-7下，需要添加以下样式清除y轴滚动条
+html {
+    overflow-x: hidden;
+    overflow-y: auto;
+    height: 100%;
+    -webkit-tap-highlight-color: rgba(0,0,0,0);
+    -webkit-tap-highlight-color: transparent;
+}
+
+body {
+    position: relative;
+    font-size: @fontSize;
+    font-family: @fontFamily;
+    line-height: 20px;
+    color: @color;
+    background: @background;
+    min-height: 100%;
+    _height: 100%;
+    _background-image: url(about:blank);
+    _background-attachment: fixed;
+    -webkit-font-smoothing: antialiased;
+}
+
+a {
+    text-decoration: none;
+    outline: none;
+    &:hover {
+    }
+}
+
+input,
+select,
+textarea,
+button {
+    font-family: @formFontFamily;
+    font-size: 12px;
+    resize: none;
+    outline: none;
+}
+
+object {
+    vertical-align: middle;
+}
+
+// table
+// ------------------------------------
+table {
+    border-spacing: 0;
+    border-collapse: collapse;
+}
+
+caption {
+}
+
+thead {
+}
+
+tbody {
+}
+
+tfoot {
+}
+
+tr {
+}
+
+th {
+}
+
+td {
+}
+
+// list（ul、ol、dl）
+// ------------------------------------
+ul,
+ol {
+    list-style: none;
+}
+
+li {
+}
+
+// icon
+// ------------------------------------
+i {
+}
+
+// code
+// ------------------------------------
+pre {
+}
+
+code {
+}
+
+// hr element
+
+// IE6-7 下 border 无法通过下面样式设置
+hr {
+    border: none;
+}
+
+// heading element
+
+h1 {
+    font-size: 20px;
+}
+
+h2 {
+    font-size: 18px;
+}
+
+h3 {
+    font-size: 16px;
+}
+
+h4 {
+    font-size: 14px;
+}
+
+h5 {
+    font-size: 12px;
+}
+
+h6 {
+    font-size: 10px;
+    color: #999;
+}

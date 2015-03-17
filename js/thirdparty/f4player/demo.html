@@ -1,0 +1,27 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <script src="../../dest/lib/sea.js"></script>
+    <script src="../../dest/lib/seajs-text.js"></script>
+    <script>
+        seajs.use('./f4player',function(video){
+
+            var v1 = new video({
+                id      : 'play',
+                width   : 600,
+                height  : 400,
+                flash   : './flash/player.swf',
+                skin    : './flash/mySkin.swf',
+                url     : '../demo_video.mp4',   // 视频地址 (请填写绝对地址,相对地址是相对于 flash)
+                img     : './demo_img.jpg'      // 缩略图地址
+            });
+            v1.show();
+        })
+    </script>
+</head>
+<body>
+    <div id="play"></div>
+</body>
+</html>

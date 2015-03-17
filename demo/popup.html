@@ -1,0 +1,36 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>弹出层插件</title>
+    <link rel="stylesheet" href="../css/base.css"/>
+    <script src="../js/lib/jquery-1.11.1.min.js"></script>
+    <script src="../js/lib/sea.js"></script>
+    <script>
+        seajs.config({
+            base : '../js'
+        })
+        $(function(){
+            seajs.use('plugin/popup.js',function(){
+                $("#popup").on('click',function(){
+                    $.popup({
+                        content : "hello"
+                    });
+                })
+                $("#notice").on('click',function(){
+                    $.notice('hello hello hello hello hello hello');
+                })
+            });
+        })
+    </script>
+    <style>
+    .popup {
+        background-color: #fff;
+    }
+    </style>
+</head>
+<body>
+    <button id="popup">popup</button>
+    <button id="notice">notice</button>
+</body>
+</html>

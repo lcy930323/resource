@@ -1,0 +1,7 @@
+
+
+.max-width( @width ){
+    max-width: @width;
+    _width: ~'expression(this.offsetWidth > 'unit(@width) ~"? '"@width~"': true);";
+    _overflow: hidden;
+}

@@ -1,0 +1,39 @@
+
+
+.grid ( @w: 960px; @ml: 0px; @mb: 0px; @col: 12  ){
+
+    overflow: hidden;
+    width: @w;
+
+    @itemWidth : @w / @col;
+
+    .loop(@col, @i: 1) when (@i <= @col) {
+        .col-@{i} {
+            width: (@i * (@w + @ml)/ @col) - @ml;
+        }
+        .loop( @col, (@i+1) );
+    }
+
+    .offset(@col, @i: 1) when (@i <= @col) {
+        .offset-@{i} {
+            margin-left: (@i * (@w + @ml)/ @col) + @ml;
+        }
+        .offset( @col, (@i+1) );
+    }
+
+    .row {
+        .clearfix;
+        width: @w + @ml;
+        margin-left: -1 * @ml;
+
+        .col {
+            .fl;
+            margin-left: @ml;
+            margin-bottom: @mb;
+        }
+
+        .loop( @col );
+        .offset(@col );
+    }
+
+}

@@ -1,0 +1,100 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>验证插件</title>
+    <link rel="stylesheet" href="../css/base.css"/>
+    <script src="../js/lib/jquery-1.11.1.min.js"></script>
+    <script src="../js/lib/sea.js"></script>
+    <script>
+        seajs.config({
+            base : '../js'
+        })
+        $(function(){
+            seajs.use('plugin/validator.js',function(){
+                $("form").validator({
+                    remoteOptions : function( el ){
+                        var name = el.getAttribute('name');
+                        return {
+                            data : (function(){
+                                return {
+                                    phone : $("#phone").val()
+                                }
+                            })()
+                        }
+                    }
+                })
+
+                $("#username").on('error',function(e, error){
+                    //console.log(arguments)
+                })
+            });
+
+        })
+
+    </script>
+    <style>
+        .form-v {
+            width: 1000px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .form-v .row {
+            overflow: hidden;
+            line-height: 40px;
+        }
+
+        .form-v .item {
+            float: left;
+            width: 90px;
+            text-align: right;
+        }
+
+        .form-v .span {
+            margin-left: 110px;
+        }
+
+    </style>
+</head>
+<body>
+
+    <div class="form-v">
+        <form action="/a.php" method="post">
+            <div class="row">
+                <div class="item">用户名：</div>
+                <div class="span">
+                    <input id="username" name="username" type="text"
+                           data-rules="required remote(./json/username.json)"
+                           data-msg="用户名不能为空" />
+                </div>
+            </div>
+            <div class="row">
+                <div class="item">密码：</div>
+                <div class="span">
+                    <input name="pass" id="pass" type="password"
+                           data-rules="required length(6-18)"
+                           data-msg="密码名不能为空 密码长度为6-18位" />
+                </div>
+            </div>
+            <div class="row">
+                <div class="item">确认密码：</div>
+                <div class="span">
+                    <input name="repass" type="password"
+                           data-rules="required length(6-18) compare(pass)"
+                           data-msg="密码名不能为空 密码长度为6-18位 两次密码输入不一致" />
+                </div>
+            </div>
+            <div class="row">
+                <div class="item"></div>
+                <div class="span">
+                    <input type="submit" value="提交" />
+                </div>
+            </div>
+        </form>
+
+    </div>
+
+
+</body>
+</html>

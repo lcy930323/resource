@@ -1,0 +1,24 @@
+<%
+    var options = this.options,
+    data    = this.data;
+%>
+<div class="calendar-panel">
+    <div class="panel-hd">
+        <div class="row">
+            <% $.each( data.view.header,function( k, v ){ %>
+            <span class="day"><%= v %></span>
+            <% }) %>
+        </div>
+    </div>
+    <div class="panel-bd">
+        <% $.each( it,function( k, v ){ %>
+        <% if( k % 7 == 0 ){ %>
+        <div class="row">
+            <% } %>
+            <span class="day<%= v.getCls() %>" data-vid="<%= vid %>" data-index="<%= k %>"><%= v.day %></span>
+            <% if( k % 7 == 6 ){ %>
+        </div>
+        <% } %>
+        <% }) %>
+    </div>
+</div>

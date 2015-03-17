@@ -1,0 +1,46 @@
+
+.list{
+    // 水平列表
+    /*
+    *   @width      列表外层宽度
+    *   @disX       x间距
+    *   @disY       y间距
+    *   @liWidth    li 宽度
+    *   @liHeight   li 高度
+    */
+    .list-h( @width ; @disX : 20px; @disY : 20px; @liWidth: 100px; @liHeight: 100px; ){
+        //overflow: hidden;
+        width: @width;
+        ul{
+            .clearfix();
+            width: @width + @disX;
+            margin-left: @disX*-1;
+            *padding-bottom: @disY;
+            li{
+                .fl();
+                width:  @liWidth;
+                height:  @liHeight;
+                margin-left: @disX;
+                margin-bottom: @disY;
+            }
+        }
+    }
+
+    .list-v( @width: auto; @disY : 0px; @liWidth: auto; @liHeight: auto; @lineHeight: 24px;){
+        overflow: hidden;
+        width: @width;
+        ul{
+            overflow: hidden;
+            li{
+                .middle();
+                .relative();
+                .clearfix();
+                width:  @liWidth;
+                height: @liHeight;
+                line-height: @lineHeight;
+            }
+        }
+    }
+
+}
+

@@ -1,0 +1,41 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>tooltip插件</title>
+    <link rel="stylesheet" href="../css/base.css"/>
+    <script src="../js/lib/jquery-1.11.1.min.js"></script>
+    <script src="../js/lib/sea.js"></script>
+    <script>
+        seajs.config({
+            base : '../js'
+        })
+        $(function(){
+            seajs.use('plugin/totop.js',function(){
+                $(".totop").totop();
+            });
+        })
+    </script>
+    <style>
+        .totop {
+            position: fixed;
+            left: 50%;
+            margin-left: 600px;
+            width: 40px;
+            height: 40px;
+            text-align: center;
+            line-height: 40px;
+            border: 1px solid #e6e6e6;
+            cursor: pointer;
+            transition: line-height .2s;
+            bottom: 30px;
+        }
+        .totop:hover {
+            line-height: 20px;
+        }
+    </style>
+</head>
+<body style="height: 3000px;">
+<span class="totop">totop</span>
+</body>
+</html>

@@ -1,0 +1,200 @@
+
+.calendar {
+    position: absolute;
+    z-index: 1000;
+    border: 1px solid #999;
+    background-color: #fff;
+//    width: 210px;
+    left: 200px;
+    @size : 30px;
+    .calendar-hd {
+        position: relative;
+        height: @size;
+
+        .year-prev,
+        .year-next,
+        .month-prev,
+        .month-next {
+            position: absolute;
+            top: 0;
+            width: 30px;
+            height: @size;
+            line-height: @size;
+            font-size: 18px;
+            cursor: pointer;
+            color: #666;
+            font-size: 12px;
+            .center;
+            &:hover {
+                color: #429dcf;
+            }
+        }
+        .month-prev {
+            left: 30px;
+            width: 35px;
+        }
+        .month-next {
+            right: 30px;
+            width: 35px;
+        }
+        .year-prev {
+            left: 0;
+        }
+        .year-next {
+            right: 0;
+        }
+
+        .hd-text {
+            display: block;
+            margin-left: 70px;
+            margin-right: 70px;
+            height: @size;
+            line-height: @size;
+            color: #333;
+            overflow: hidden;
+            .center;
+
+            .text-item {
+                float: left;
+            }
+        }
+    }
+
+    .calendar-bd {
+        overflow: hidden;
+        .calendar-panel {
+            float: left;
+            border-left: 1px solid #d7d7d7;
+            margin-left: -1px;
+            padding-bottom: 100px;
+            margin-bottom: -100px;
+            .panel-hd {
+                height: 22px;
+                .row {
+                    .day {
+                        height: 24px;
+                        line-height: 24px;
+                        background-color: #eee;
+                    }
+                }
+            }
+            .panel-bd {
+
+            }
+
+            .row {
+                .clearfix;
+                .day {
+                    .fl;
+                    overflow: hidden;
+                    .center;
+                    line-height: @size;
+                    width: @size;
+                    height: @size;
+                    color: #000;
+                    &.hover {
+                        border: 2px solid #fb0;
+                        line-height: @size - 4;
+                        width: @size - 4;
+                        height: @size - 4;
+                        cursor: pointer;
+                    }
+                    &.prev,
+                    &.next,
+                    &.other {
+                        color: #666;
+                        &.hover {
+                            border-color: #ffec07;
+                        }
+                        &.start,
+                        &.stop,
+                        &.active {
+                            background-color: #ffd446;
+                            color: #fff;
+                            cursor: default;
+                        }
+                    }
+                    &.start,
+                    &.stop,
+                    &.active {
+                        background-color: #fb0;
+                        color: #fff;
+                        cursor: default;
+                    }
+                    &.range {
+                        background-color: #ffd446;
+                        color: #fff;
+                        cursor: default;
+                    }
+                    &.disabled {
+                        .opacity(70) !important;
+                        color: #999;
+                        cursor: no-drop;
+                    }
+                }
+            }
+        }
+    }
+
+    .calendar-ft {
+        border-top: 1px solid #d7d7d7;
+        position: relative;
+        height: 30px;
+
+        .ft-time {
+            position: absolute;
+
+            top: 3px;
+            left: 20px;
+            width: 100px;
+            overflow: hidden;
+            height: 24px;
+            span {
+                float: left;
+                text-align: center;
+                height: 24px;
+                line-height: 22px;
+                margin-right: 5px;
+            }
+            .time-hours,
+            .time-minutes,
+            .time-seconds {
+                width: 20px;
+                line-height: 24px;
+                cursor: default;
+                &.hover {
+                    width: 18px;
+                    height: 22px;
+                    line-height: 22px;
+                    border: 1px solid #ffd446;
+                }
+            }
+        }
+
+        .ft-btn {
+            position: absolute;
+            top: 4px;
+            height: 20px;
+            line-height: 20px;
+            width: 30px;
+            text-align: center;
+            border: 1px solid #c9c9c9;
+            font-size: 12px;
+            color: #333;
+
+            &:hover {
+                color: #000;
+                border-color: #ffd446;
+            }
+        }
+
+        .ft-today {
+            right: 45px;
+        }
+
+        .ft-ok {
+            right: 5px;
+        }
+    }
+
+}
