@@ -20,12 +20,19 @@
                     content : '<h1>html片断</h1><p>ppppppppppppp</p>',
                     align   : 'right center'
                 });
+                $.tooltip( $(".tooltip3"), {
+                    content : 'texttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttext',
+                    align   : 'right center',
+                    maxWidth: '200',
+                    time    : 10000
+                })
             });
         })
     </script>
     <style>
     .tooltip1,
-    .tooltip2 {
+    .tooltip2,
+    .tooltip3 {
         background-color: #fff;
         left: 100px;
         top: 100px;
@@ -36,10 +43,15 @@
     .tooltip2 {
         top: 200px;
     }
+
+    .tooltip3 {
+        top: 400px;
+    }
     </style>
 </head>
 <body>
     <span class="tooltip1">tooltip1</span>
     <span class="tooltip2">html片断</span>
+    <span class="tooltip3">自动显示</span>
 </body>
 </html>

@@ -324,6 +324,14 @@ define(function (require, exports, module) {
             }
         });
 
+        $[ PLUGIN_NAME ] = function( el, options ){
+            var plugin = new Tooltip(el, options);
+            plugin.timer = null;
+            plugin.alignHandler();
+            plugin.renderUI();
+            setTimeout($.proxy(plugin.removeUI,plugin),options.time || 3000)
+        }
+
         var old = $.fn[ PLUGIN_NAME ],
             allow = ['defaults', 'setDefaults'];
 
