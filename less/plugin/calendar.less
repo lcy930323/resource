@@ -2,12 +2,30 @@
 .calendar {
     position: absolute;
     z-index: 1000;
-    border: 1px solid #999;
+//    border: 1px solid #999;
     background-color: #fff;
+    padding: 20px;
+    padding-top: 10px;
 //    width: 210px;
-    left: 200px;
-    @size : 30px;
+    -webkit-box-shadow: 0px 0px 5px 0px #d8d9db;
+    -moz-box-shadow: 0px 0px 5px 0px #d8d9db;
+    -ms-box-shadow: 0px 0px 5px 0px #d8d9db;
+    box-shadow: 0px 0px 5px 0px #d8d9db;
+    border: 1px solid #d8d9db \9;
+    border-radius: 3px;
+    @size : 40px;
+
+    .trs() {
+        -webkit-transition: background-color 0.2s, color 0.2s, border-color 0.2s;
+        -moz-transition: background-color 0.2s, color 0.2s, border-color 0.2s;
+        -ms-transition: background-color 0.2s, color 0.2s, border-color 0.2s;
+        -o-transition: background-color 0.2s, color 0.2s, border-color 0.2s;
+        transition: background-color 0.2s, color 0.2s, border-color 0.2s;
+    }
+
     .calendar-hd {
+        display: block;
+        width: 100%;
         position: relative;
         height: @size;
 
@@ -25,9 +43,12 @@
             color: #666;
             font-size: 12px;
             .center;
+            font-weight: bold;
+            border-color: #fff;
             &:hover {
                 color: #429dcf;
             }
+            .trs();
         }
         .month-prev {
             left: 30px;
@@ -52,6 +73,7 @@
             line-height: @size;
             color: #333;
             overflow: hidden;
+            font-size: 14px;
             .center;
 
             .text-item {
@@ -62,19 +84,22 @@
 
     .calendar-bd {
         overflow: hidden;
+        margin-left: -20px;
         .calendar-panel {
             float: left;
-            border-left: 1px solid #d7d7d7;
-            margin-left: -1px;
+//            border-left: 1px solid #d7d7d7;
+//            margin-left: -1px;
             padding-bottom: 100px;
             margin-bottom: -100px;
+            margin-left: 20px;
             .panel-hd {
                 height: 22px;
                 .row {
                     .day {
                         height: 24px;
                         line-height: 24px;
-                        background-color: #eee;
+                        font-size: 12px;
+                        color: #848484;
                     }
                 }
             }
@@ -87,11 +112,15 @@
                 .day {
                     .fl;
                     overflow: hidden;
+                    .trs();
                     .center;
+                    border-color: #fff;
                     line-height: @size;
                     width: @size;
                     height: @size;
-                    color: #000;
+                    color: #304053;
+                    border-radius: 50%;
+                    font-size: 14px;
                     &.hover {
                         border: 2px solid #fb0;
                         line-height: @size - 4;
@@ -102,7 +131,7 @@
                     &.prev,
                     &.next,
                     &.other {
-                        color: #666;
+                        color: #999;
                         &.hover {
                             border-color: #ffec07;
                         }
@@ -120,11 +149,23 @@
                         background-color: #fb0;
                         color: #fff;
                         cursor: default;
+                        &.start {
+                            border-radius: 50% 0 0 50%;
+                        }
+                        &.stop {
+                            border-radius: 0 50% 50% 0;
+                        }
+                    }
+                    &.stop {
+                        &.start {
+                            border-radius: 50%;
+                        }
                     }
                     &.range {
                         background-color: #ffd446;
                         color: #fff;
                         cursor: default;
+                        border-radius: 0px;
                     }
                     &.disabled {
                         .opacity(70) !important;
@@ -140,12 +181,13 @@
         border-top: 1px solid #d7d7d7;
         position: relative;
         height: 30px;
+        margin-top: 10px;
 
         .ft-time {
             position: absolute;
 
-            top: 3px;
-            left: 20px;
+            top: 8px;
+            left: 10px;
             width: 100px;
             overflow: hidden;
             height: 24px;
@@ -155,6 +197,9 @@
                 height: 24px;
                 line-height: 22px;
                 margin-right: 5px;
+                border-color: #fff;
+                font-size: 14px;
+                .trs();
             }
             .time-hours,
             .time-minutes,
@@ -173,15 +218,15 @@
 
         .ft-btn {
             position: absolute;
-            top: 4px;
-            height: 20px;
-            line-height: 20px;
-            width: 30px;
+            top: 9px;
+            height: 24px;
+            line-height: 24px;
+            width: 40px;
             text-align: center;
             border: 1px solid #c9c9c9;
             font-size: 12px;
             color: #333;
-
+            .trs();
             &:hover {
                 color: #000;
                 border-color: #ffd446;
@@ -189,7 +234,7 @@
         }
 
         .ft-today {
-            right: 45px;
+            right: 55px;
         }
 
         .ft-ok {

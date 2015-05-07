@@ -16,11 +16,7 @@
                     remoteOptions : function( el ){
                         var name = el.getAttribute('name');
                         return {
-                            data : (function(){
-                                return {
-                                    phone : $("#phone").val()
-                                }
-                            })()
+                            data : { phone : $("#phone").val() }
                         }
                     }
                 })

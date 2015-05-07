@@ -12,13 +12,17 @@
     </div>
     <div class="panel-bd">
         <% $.each( it,function( k, v ){ %>
-        <% if( k % 7 == 0 ){ %>
-        <div class="row">
+            <% if( k % 7 == 0 ){ %>
+            <div class="row">
             <% } %>
-            <span class="day<%= v.getCls() %>" data-vid="<%= vid %>" data-index="<%= k %>"><%= v.day %></span>
+                <% if( v.data.show ) { %>
+                <span class="day<%= v.getCls() %>" data-vid="<%= vid %>" data-index="<%= k %>"><%= v.day %></span>
+                <% } else { %>
+                <span class="day day-hide"></span>
+                <% } %>
             <% if( k % 7 == 6 ){ %>
-        </div>
-        <% } %>
+            </div>
+            <% } %>
         <% }) %>
     </div>
 </div>

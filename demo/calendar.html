@@ -12,9 +12,13 @@
         })
         $(function(){
             seajs.use('plugin/calendar.js',function(){
-                $('.calendar1').calendar();
+                $('.calendar1').calendar({
+                    displayCount : 2,
+                    showOther : true
+                });
                 $('.calendar2').calendar({
-                    showTime : true
+                    showTime : true,
+                    displayCount : 2
                 });
                 $('.calendar3').calendar({
                     type : 'multiple'
@@ -36,6 +40,9 @@
 
                  maxDate: null,
                  minDate: null,
+
+                 // 显示上月
+                 showOther : false,
 
                  // 默认20年前后
                  defaultMaxDate: new Date().getTime() + 20 * 365 * 24 * 60 * 60 * 1000,

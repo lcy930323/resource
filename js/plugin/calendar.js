@@ -39,7 +39,12 @@ define(function (require, exports, module) {
 
         selectClose : true,
 
-        hackTop   : -1,
+        hackTop   : 1,
+
+        hackLeft  : 0,
+
+        // 显示上月
+        showOther : false,
 
         // 时分秒步长
         hoursStep   : 1,
@@ -48,7 +53,7 @@ define(function (require, exports, module) {
 
         weekText  : ['一','二','三','四','五','六','日'],
 
-        monthText : ['','一月','二月','三月','四月','五月','六月','七月','八月','九月','十月','十一月','十二月'],
+        monthText : ['','1月','2月','3月','4月','5月','6月','7月','8月','9月','10月','11月','12月'],
 
         // 接口
         onSelected : null
@@ -66,13 +71,13 @@ define(function (require, exports, module) {
         // class 的状态
         // - curr 本月  prev 上月  next 下月  active 选中
         this.data = $.extend({},{
-            disabled : false,
-            curr     : false,
-            prev     : false,
-            next     : false,
-            active   : false,
-            stop     : false,
-            start    : false
+            cls_disabled : false,
+            cls_curr     : false,
+            cls_prev     : false,
+            cls_next     : false,
+            cls_active   : false,
+            cls_stop     : false,
+            cls_start    : false
         },data);
         // 更新对象属性
         this.reset();
@@ -94,6 +99,7 @@ define(function (require, exports, module) {
             this.second  = this.date.format("ss");
             this.string  = this.date.format("YYYY-MM-DD HH:mm:ss");
             this.ymd     = this.date.format("YYYY-MM-DD");
+            this.ym      = this.date.format("YYYY-MM");
             this.invalid = this.date.isValid();
         },
         // moment startOf
@@ -137,8 +143,8 @@ define(function (require, exports, module) {
         getCls : function(){
             var cls = '';
             for ( attr in this.data ){
-                if( this.data[ attr ] === true ){
-                    cls += ' ' + attr;
+                if( /^cls_/i.test(attr) && this.data[ attr ] === true ){
+                    cls += ' ' + attr.match(/^cls_([a-zA-Z]*)/)[1];
                 }
             }
             return cls;
@@ -308,6 +314,7 @@ define(function (require, exports, module) {
                     this.data.view.top[i]   = MyDate( temDate.ymd );
                     temDate                 = temDate.nextMonth();
                 }
+
                 // UI元素
                 this.$UI = $($.template(tpl).call(this,{ it: this.data.view.top }));
 
@@ -369,10 +376,14 @@ define(function (require, exports, module) {
 
                 left = this.$el.offset().left;
                 top  = this.$el.offset().top;
+
                 height = this.$el.outerHeight();
+
                 this.$UI.css({
                     top : height + top + options.hackTop,
-                    left : left
+                    left : left + options.hackLeft,
+                    width : this.$UI.width(),
+                    height : this.$UI.height()
                 });
             },
 
@@ -423,6 +434,11 @@ define(function (require, exports, module) {
 
                 // 日期点击后
                 $days.on('click',function(){
+
+                    if( $(this).hasClass('day-hide') ){
+                        return false;
+                    }
+
                     var date, count, index, tem, vid;
                     // 元素上的值
                     index = $(this).data("index");
@@ -459,7 +475,9 @@ define(function (require, exports, module) {
                     }
                     return false;
                 }).on('mouseover',function(){
-                    $(this).addClass('hover');
+                    if( !$(this).hasClass('day-hide') ){
+                        $(this).addClass('hover');
+                    }
                 }).on('mouseout',function(){
                     $(this).removeClass('hover');
                 });
@@ -582,6 +600,10 @@ define(function (require, exports, module) {
                 })
             },
 
+            fixZero : function (num) {
+                return num < 10 ? "0"+num : num+"";
+            },
+
             // 获取月视图数据
             // - currentDate  当月MyDate对象
             // - selectedDate 选中日期对象
@@ -598,6 +620,7 @@ define(function (require, exports, module) {
                 firstArr  = [];
                 centerArr = [];
                 lastArr   = [];
+
                 // 最大日期 最小日期
                 minDate   = this.data.minDate;
                 maxDate   = this.data.maxDate;
@@ -643,21 +666,23 @@ define(function (require, exports, module) {
 
                 // 当月数据
                 for(i = 1; i <= days; i++){
-                    currDate = MyDate( curr.year+"-"+curr.month+"-"+i );
+                    currDate = MyDate( curr.ym +"-"+ this.fixZero(i) );
+                    data = {};
                     // 区分范围选择
                     if( options.type == 'multiple' ) {
                         data = {
-                            disabled : (currDate.time > maxDate.time) || (currDate.time < minDate.time ),
-                            start    : this.isEqualDay( currDate, selected.start ),
-                            stop     : this.isEqualDay( currDate, selected.end ),
-                            range    : this.inDateRange( currDate, selected )
+                            cls_disabled : (currDate.time > maxDate.time) || (currDate.time < minDate.time ),
+                            cls_start    : this.isEqualDay( currDate, selected.start ),
+                            cls_stop     : this.isEqualDay( currDate, selected.end ),
+                            cls_range    : this.inDateRange( currDate, selected )
                         }
                     } else {
                         data = {
-                            active   : this.isEqualDay( currDate, selected ),
-                            disabled : (currDate.time > maxDate.time) || (currDate.time < minDate.time )
+                            cls_active   : this.isEqualDay( currDate, selected ),
+                            cls_disabled : (currDate.time > maxDate.time) || (currDate.time < minDate.time )
                         };
                     }
+                    data.show = true;
                     centerArr.push( currDate.setData(data) );
                 }
 
@@ -667,23 +692,24 @@ define(function (require, exports, module) {
                 prevMonthDays = this.getDaysByMonth( prevMonth );
 
                 for(i = 1,len = (7 - (firstWeek - options.firstWeek - 1) * -1) % 7; i <= len; i++){
-                    currDate = MyDate( prevMonth.year+"-"+prevMonth.month+"-"+(prevMonthDays - len + i) );
+                    data = {};
+                    currDate = MyDate( prevMonth.ym +"-"+ this.fixZero(prevMonthDays - len + i) );
                     // 区分范围选择
                     if( options.type == 'multiple' ) {
                         data = {
-                            disabled : (currDate.time > maxDate.time) || (currDate.time < minDate.time ),
-                            start    : this.isEqualDay( currDate, selected.start ),
-                            stop     : this.isEqualDay( currDate, selected.end ),
-                            range    : this.inDateRange( currDate, selected ),
-                            prev     : true
+                            cls_disabled : (currDate.time > maxDate.time) || (currDate.time < minDate.time ),
+                            cls_start    : this.isEqualDay( currDate, selected.start ),
+                            cls_stop     : this.isEqualDay( currDate, selected.end ),
+                            cls_range    : this.inDateRange( currDate, selected ),
+                            cls_prev     : true
                         }
                     } else {
                         data = {
-                            disabled : (currDate.time > maxDate.time) || (currDate.time < minDate.time ),
-                            prev     : true
+                            cls_disabled : (currDate.time > maxDate.time) || (currDate.time < minDate.time ),
+                            cls_prev     : true
                         };
                     }
-
+                    data.show = !!options.showOther;
                     firstArr.push( currDate.setData(data) );
                 }
 
@@ -692,22 +718,24 @@ define(function (require, exports, module) {
                 nextMonth = MyDate(curr.string).nextMonth();
                 len = (len + days) % 7 == 0 ? 0 : (7 - (len + days) % 7);
                 for(i = 1; i <= len; i++){
-                    currDate = MyDate( nextMonth.year+"-"+nextMonth.month+"-"+i );
+                    data = {};
+                    currDate = MyDate( nextMonth.ym +"-"+ this.fixZero(i) );
                     // 区分范围选择
                     if( options.type == 'multiple' ) {
                         data = {
-                            disabled : (currDate.time > maxDate.time) || (currDate.time < minDate.time ),
-                            start    : this.isEqualDay( currDate, selected.start ),
-                            stop     : this.isEqualDay( currDate, selected.end ),
-                            range    : this.inDateRange( currDate, selected ),
-                            next     : true
+                            cls_disabled : (currDate.time > maxDate.time) || (currDate.time < minDate.time ),
+                            cls_start    : this.isEqualDay( currDate, selected.start ),
+                            cls_stop     : this.isEqualDay( currDate, selected.end ),
+                            cls_range    : this.inDateRange( currDate, selected ),
+                            cls_next     : true
                         }
                     } else {
                         data = {
-                            disabled : (currDate.time > maxDate.time) || (currDate.time < minDate.time ),
-                            next     : true
+                            cls_disabled : (currDate.time > maxDate.time) || (currDate.time < minDate.time ),
+                            cls_next     : true
                         };
                     }
+                    data.show = !!options.showOther;
                     lastArr.push( currDate.setData(data) );
                 }
 
@@ -754,7 +782,7 @@ define(function (require, exports, module) {
 
             // 获取当月第一天是星期几
             getFirstWeek : function ( date ) {
-                date = MyDate( date.year+'-'+date.month+'-1' );
+                date = MyDate( date.ym+'-01' );
                 return date.week;
             },
 

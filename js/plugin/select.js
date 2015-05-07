@@ -10,7 +10,7 @@ define(function (require, exports, module) {
                     <div class="select-hd"> \
                         <span class="select-text">' + this.options.placeholder + '</span> \
                         <span class="select-icon"> \
-                            <i class="allow-bottom"></i> \
+                            <i class="select-allow"></i> \
                         </span> \
                     </div> \
                     <div class="select-bd"> \
@@ -43,6 +43,8 @@ define(function (require, exports, module) {
         firstSelected: false,
         // 自动选中选中第一项时 是否触发change事件
         firstSelectedTrigger : false,
+        // dom操作方式
+        mouseenter : true,
         /**
          * ajax相关
          */
@@ -230,7 +232,7 @@ define(function (require, exports, module) {
                 var oText = hd.find('.select-text');
                 var oIcon = hd.find('.select-icon');
 
-                hd.click(function () {
+                hd.on("click",function () {
                     // 关闭其他select
                     $.each(window.__SELECT, function (key, val) {
                         (val !== _this) && val.close();
@@ -245,6 +247,15 @@ define(function (require, exports, module) {
                     return false;
                 })
 
+                // hover展开
+                if( this.options.mouseenter ) {
+                    this.$ui.on('mouseleave', function() {
+                        _this.close();
+                    }).on("mouseenter", function() {
+                        _this.open();
+                    });
+                }
+
                 ali.hover(function () {
                     $(this).toggleClass('hover');
                 }).click(function () {
@@ -255,18 +266,20 @@ define(function (require, exports, module) {
             },
 
             close: function () {
-                this.$ui.find('.select-bd').hide();
+                this.$ui.removeClass('open');
+                this.$ui.find('.select-bd').stop(true).slideUp(100);
                 this.isOpen = false;
                 this.triggerHandler('close');
             },
 
             open: function () {
-                this.$ui.find('.select-bd').show();
+                this.$ui.addClass('open');
+                this.$ui.find('.select-bd').stop(true).slideDown(100);
                 this.isOpen = true;
                 this.triggerHandler('open');
             },
 
-            setTest: function (text) {
+            setText: function (text) {
                 this.$ui.find('.select-text').text(text);
             },
             /*
@@ -283,7 +296,7 @@ define(function (require, exports, module) {
                 }
                 $.each(this.DATA.list, function (i, item) {
                     if (item[ k ] == key) {
-                        _this.setTest(item.text);
+                        _this.setText(item.text);
                         _this.$el.val(item.key);
                         _this.$ui.find('.select-bd li').eq(item.index).addClass('selected').siblings().removeClass('selected');
 
