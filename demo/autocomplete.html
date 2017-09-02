@@ -1,0 +1,35 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>自动完成插件</title>
+    <link rel="stylesheet" href="../css/base.css"/>
+    <script src="../js/lib/jquery-1.11.1.min.js"></script>
+    <script src="../js/lib/sea.js"></script>
+    <script>
+        seajs.config({
+            base : '../js'
+        })
+        $(function(){
+            seajs.use('plugin/autocomplete.js',function(){
+                $('.autocomplete').autoComplete({
+                    url : './json/autocomplete.json'
+                });
+            });
+        })
+    </script>
+    <style>
+        .wrap {
+            width: 500px;
+            margin: auto;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="wrap">
+        <input class="autocomplete" type="text"/>
+    </div>
+
+</body>
+</html>

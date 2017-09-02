@@ -1,0 +1,33 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <script src="../../dest/lib/sea.js"></script>
+
+    <script>
+        seajs.config({
+            base : '../../',
+            alias : {
+                'jquery' : 'dest/lib/jquery.js',
+                'underscore' : 'dest/lib/underscore.js'
+            }
+        })
+    </script>
+    <script>
+
+        seajs.use('./flexpaper',function(flexpaper){
+
+            var f1 = new flexpaper({
+                id  : 'flexpaper',              // 容器ID
+                url : './demo-flexpaper.swf'    // flash文档地址
+            });
+            f1.show();
+        })
+
+    </script>
+</head>
+<body>
+    <div id="flexpaper" style="height: 600px;"></div>
+</body>
+</html>

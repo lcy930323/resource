@@ -1,0 +1,101 @@
+
+.tooltip {
+    position: absolute;
+
+    @bdc : #ccc;
+    @bgc : #fff;
+
+    @width : 15px;
+    @height: 7px;
+
+    &.tooltip-top {
+
+        .tooltip-arrow {
+            .arrow(@w: @width; @h: @height; @c: @bdc);
+            position: absolute;
+            top: @height * -1;
+        }
+
+        .tooltip-arrow2 {
+            .arrow(@w: @width; @h: @height; @c: @bgc);
+            position: absolute;
+            top: @height * -1 + 1;
+        }
+
+        .tooltip-arrow,
+        .tooltip-arrow2 {
+            left: 20px;
+        }
+    }
+
+
+    &.tooltip-right {
+
+        .tooltip-arrow {
+            .arrow(@type: right;@w: @width; @h: @height; @c: @bdc);
+            position: absolute;
+            right: @height * -1;
+        }
+
+        .tooltip-arrow2 {
+            .arrow(@type: right;@w: @width; @h: @height; @c: @bgc);
+            position: absolute;
+            right: @height * -1 + 1;
+        }
+
+        .tooltip-arrow,
+        .tooltip-arrow2 {
+            top: 20px;
+        }
+    }
+
+
+    &.tooltip-bottom {
+
+        .tooltip-arrow {
+            .arrow(@type: bottom;@w: @width; @h: @height; @c: @bdc);
+            position: absolute;
+            bottom: @height * -1;
+        }
+
+        .tooltip-arrow2 {
+            .arrow(@type: bottom;@w: @width; @h: @height; @c: @bgc);
+            position: absolute;
+            bottom: @height * -1 + 1;
+        }
+
+        .tooltip-arrow,
+        .tooltip-arrow2 {
+            left: 20px;
+        }
+    }
+
+
+    &.tooltip-left {
+
+        .tooltip-arrow {
+            .arrow(@type: left;@w: @width; @h: @height; @c: @bdc);
+            position: absolute;
+            left: @height * -1;
+        }
+
+        .tooltip-arrow2 {
+            .arrow(@type: left;@w: @width; @h: @height; @c: @bgc);
+            position: absolute;
+            left: @height * -1 + 1;
+        }
+
+        .tooltip-arrow,
+        .tooltip-arrow2 {
+            top: 20px;
+        }
+    }
+
+    .tooltip-main {
+        padding: 14px;
+        border: 1px solid @bdc;
+        background-color: @bgc;
+        border-radius: 5px;
+        word-break: break-all;
+    }
+}

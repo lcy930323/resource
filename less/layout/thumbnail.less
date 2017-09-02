@@ -1,0 +1,44 @@
+
+.thumbnail {
+
+    .thumbnail-v(@width: auto; @imgHeight: 100px; @imgWidth:100px; @optionHeight : auto; @optionWidth: 200px; @disx: 0px ) {
+        width: @width;
+
+        .image {
+            display: block;
+            margin: 0px @disx;
+            height: @imgHeight;
+            width: @imgWidth;
+        }
+
+        .option {
+            overflow: hidden;
+            margin: 0px @disx;
+            height: @optionHeight;
+            width: @captionWidth;
+        }
+    }
+
+    .thumbnail-h(@width:auto; @imgWidth: 100px; @imgHeight:100px; @captionWidth: 200px; @optionHeight: 200px; @ml:0px; @mr:0px ) {
+
+        width: @width;
+        .ma;
+        .clearfix;
+        .image {
+            .fl;
+            width: @imgWidth;
+            height: @imgHeight;
+            margin-left: @ml;
+            margin-right: @mr;
+        }
+
+        .option {
+            .fl;
+            position: relative;
+            overflow: hidden;
+            width: @captionWidth;
+            height: @captionHeight;
+        }
+    }
+
+}

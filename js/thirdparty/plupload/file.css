@@ -1,0 +1,84 @@
+.files {
+  margin-top: 10px;
+}
+.files .file-item {
+  position: relative;
+  float: left;
+  width: 170px;
+  height: 26px;
+  border: 1px solid #f5f5f5;
+  background-color: #f5f5f5;
+  margin-right: 10px;
+  margin-bottom: 10px;
+}
+.files .file-item:hover {
+  cursor: default;
+}
+.files .file-item.active {
+  border-color: #ff8800;
+}
+.files .file-item.active input {
+  display: block;
+}
+.files .file-item.active span {
+  display: none;
+}
+.files .file-item input {
+  outline: none;
+  display: none;
+  float: left;
+  width: 140px;
+  padding-left: 10px;
+  line-height: 24px;
+  font-size: 12px;
+  color: #4c4c4c;
+  border: 0;
+  background-color: transparent;
+}
+.files .file-item span {
+  float: left;
+  width: 140px;
+  padding-left: 10px;
+  line-height: 26px;
+  font-size: 12px;
+  color: #4c4c4c;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  cursor: default;
+}
+.files .file-item .del {
+  position: absolute;
+  top: 9px;
+  right: 10px;
+  width: 12px;
+  height: 12px;
+  overflow: hidden;
+  line-height: 9px;
+  text-align: center;
+  color: #333;
+  font-size: 12px;
+  font-family: "Microsoft yahei";
+  text-decoration: none;
+}
+.files .loading-bg,
+.files .loading-speed {
+  position: absolute;
+  width: 200px;
+  height: 10px;
+  left: 160px;
+  top: 9px;
+  line-height: 0;
+  overflow: hidden;
+}
+.files .loading-bg {
+  background-color: #d9d9d9;
+}
+.files .loading-speed {
+  width: 0px;
+  background-color: #ff8a00;
+}
+.files .file-item {
+  float: none;
+  width: 395px;
+}

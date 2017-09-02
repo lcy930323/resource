@@ -1,0 +1,51 @@
+
+.paging ( @height: 22px; @fz: 14px; @mr: 6px; ){
+    text-align: center;
+    font-size: 0px;
+    color: #666;
+    a,span{
+        .inline-block();
+        vertical-align: text-bottom;
+        position: relative;
+        padding: 0 @height/2-2;
+        font-size: @fz;
+        line-height: @height;
+        height: @height;
+        margin-right: @mr;
+        border: 1px solid;
+    }
+    a{
+        .transition(all 0.3s);
+        .icon {
+            vertical-align: middle;
+            margin-bottom: @fz /10 + 1;
+            _margin-bottom: 0;
+            _margin-top: @height - 17;
+            _top: (@height - @fz) / -2  + 3;
+        }
+    }
+    span{
+        padding: 1px @height/2 - 8;
+        background-color: transparent;
+        border: 0;
+        font-size: @height / 2 ;
+    }
+    a.active{
+    }
+    a:hover{
+    }
+
+    &.paging-left{
+        text-align: left;
+    }
+
+    &.paging-right{
+        text-align: right;
+        a,span{
+            margin-right: 0;
+            margin-left: 6px;
+        }
+    }
+
+}
+

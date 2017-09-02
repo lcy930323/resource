@@ -1,0 +1,60 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>翻页插件</title>
+    <link rel="stylesheet" href="../css/base.css"/>
+    <script src="../js/lib/jquery-1.11.1.min.js"></script>
+    <script src="../js/lib/sea.js"></script>
+    <script>
+        seajs.config({
+            base : '../js'
+        })
+        $(function(){
+            seajs.use('plugin/paging.js',function(){
+                $("#paging").paging({
+                    total : 100,
+                    count : 5,
+                    afterRender : function( page ){
+                        
+                    }
+                });
+                /*
+                 total           : 68,                       // 总条数
+                 pageNum         : 1,                        // 当前页
+                 prePage         : 10,                       // 每页多少条
+                 count           : 7,                        // 显示页码数
+                */
+            });
+        })
+    </script>
+    <style>
+        .wrap {
+            width: 500px;
+            margin: auto;
+        }
+
+        .paging {
+            margin-top: 30px;
+            color: #333;
+        }
+        .paging a {
+            background-color: #fff;
+            border-color: #999;
+            color: #333;
+        }
+        .paging a.active {
+            background-color: #999;
+            color: #fff;
+            border-color: #999;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="wrap">
+        <div id="paging"></div>
+    </div>
+
+</body>
+</html>

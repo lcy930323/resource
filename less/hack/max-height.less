@@ -1,0 +1,7 @@
+
+
+.max-height( @height ){
+    max-height: @height;
+    _height: ~'expression(this.offsetHeight > 'unit(@height) ~"? '"@height~"': true);";
+    _overflow: hidden;
+}
