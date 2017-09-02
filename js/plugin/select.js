@@ -52,6 +52,8 @@ define(function (require, exports, module) {
         ajaxUrl: null,
         // ajaxDom属性
         ajaxUrlKey: 'data-ajax',
+        // ajaxDom属性
+        ajaxMethodKey: 'data-method',
         // ajax返回的键
         dataKey: 'key',
         // ajax返回的值
@@ -128,12 +130,13 @@ define(function (require, exports, module) {
             },
 
             getDataByAjax: function () {
-                var url,
+                var url, method = 'get',
                     data = {},
                     _this = this,
                     options = this.options;
 
                 url = options.ajaxUrl || this.el.getAttribute(options.ajaxUrlKey);
+                method = options.method || this.el.getAttribute(options.ajaxMethodKey);
                 if (typeof url !== 'string') return false;
 
                 if ($.isFunction(options.ajaxData)) {
@@ -141,7 +144,7 @@ define(function (require, exports, module) {
                 }
 
                 $.ajax(url, {
-                    "type": "post",
+                    "type": method,
                     "data": data
                 }).done(function (response) {
                     var data = options.parseAjaxData(response);
