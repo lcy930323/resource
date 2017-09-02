@@ -1,0 +1,37 @@
+<%
+    var options = this.options,
+        data    = this.data;
+%>
+<div class="calendar">
+    <div class="calendar-hd">
+        <a class="month-prev" href="javascript:;">&lt;</a>
+        <a class="month-next" href="javascript:;">&gt;</a>
+        <a class="year-prev" href="javascript:;">&lt;&lt;</a>
+        <a class="year-next" href="javascript:;">&gt;&gt;</a>
+
+        <a class="hd-text" href="javascript:;">
+            <% $.each( it ,function(key, val){ %>
+                <span class="text-item" style="width: <%= 100 / it.length %>%;">
+                    <%= options.monthText[val.month] %>
+                    <%= val.year %>
+                </span>
+            <% }) %>
+        </a>
+    </div>
+    <div class="calendar-bd"></div>
+    <% if( options.showTime ){ %>
+    <div class="calendar-ft">
+        <div class="ft-time">
+            <span class="time-hours"><%= data.view.selected.hour || '00' %></span>
+            <span>:</span>
+            <span class="time-minutes"><%= data.view.selected.minute  || '00' %></span>
+            <span>:</span>
+            <span class="time-seconds"><%=  data.view.selected.second  || '00' %></span>
+        </div>
+
+        <a class="ft-btn ft-today" href="javascript:;">今天</a>
+        <a class="ft-btn ft-ok" href="javascript:;">确定</a>
+    </div>
+    <% } %>
+
+</div>

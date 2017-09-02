@@ -1,0 +1,24 @@
+.slide ( @w:960px; @h:240px; @liW: 320px; @liH:240px; @mr:0px ) {
+
+    .slide-mark {
+        position: relative;
+        width: @w;
+        height: @h;
+        overflow: hidden;
+
+        ul {
+            position: absolute;
+            top: 0;
+            left: 0;
+            .clearfix;
+            width: 10000px;
+            li {
+                .fl;
+                width: @liW;
+                height: @liH;
+                overflow: hidden;
+                margin-right: @mr;
+            }
+        }
+    }
+}

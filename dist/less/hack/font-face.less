@@ -1,0 +1,9 @@
+
+.font-face(@url, @font-name) {
+    font-family: '@{font-name}';
+    src: url('//@{url}@{font-name}.eot'); /* IE9 Compat Modes */
+    src: url('//@{url}@{font-name}.eot?#iefix') format('embedded-opentype'), /* IE6-IE8 */
+    url('//@{url}@{font-name}.woff') format('woff'), /* Modern Browsers */
+    url('//@{url}@{font-name}.ttf')  format('truetype'), /* Safari, Android, iOS */
+    url('//@{url}@{font-name}.svg#@{font-name}') format('svg'); /* Legacy iOS */
+}

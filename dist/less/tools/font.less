@@ -1,0 +1,9 @@
+
+.loop(@num, @i: 12) when (@i <= @num) {
+    .fz@{i} {
+        font-size: @i * 1px;
+    }
+    .loop( @num, (@i+2) );
+}
+
+.loop( @num:50 );

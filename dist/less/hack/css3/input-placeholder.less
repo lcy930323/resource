@@ -1,0 +1,12 @@
+
+.input-placeholder(@arguments) {
+    &::-webkit-input-placeholder { color: @arguments; } // Chrome 4+
+    &::-moz-input-placeholder { color: @arguments; } // Firefox 18+
+    &::-moz-placeholder { color: @arguments; } // Firefox 4-18
+    &::-ms-input-placeholder { color: @arguments; } // IE10+
+}
+
+/*
+* 使用示例：
+* 参考文献：http://caniuse.com/input-placeholder
+*/

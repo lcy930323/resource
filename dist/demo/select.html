@@ -1,0 +1,54 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>模拟select插件</title>
+    <link rel="stylesheet" href="../css/base.css"/>
+    <script src="../js/lib/jquery-1.11.1.min.js"></script>
+    <script src="../js/lib/sea.js"></script>
+    <script>
+        seajs.config({
+            base : '../js'
+        })
+        $(function(){
+            seajs.use('plugin/select.js',function(){
+                $(".select1").select();
+                $(".select2").select();
+                $(".select3").select();
+                $(".select4").select();
+
+                setTimeout(function(){
+                    $(".select4").select('fetchData','./json/select2.json')
+                },3000)
+            });
+        })
+    </script>
+    <style>
+    .popup {
+        background-color: #fff;
+    }
+    </style>
+</head>
+<body style="padding-left: 50px;">
+    <select name="" id="">
+        <option value="1">北京</option>
+        <option value="2">广州</option>
+        <option value="3">深圳</option>
+    </select>
+    <div>美化select</div>
+    <select name="" id="" class="select1">
+        <option value="1">北京</option>
+        <option value="2">广州</option>
+        <option value="3">深圳</option>
+    </select>
+    <div>远程数据</div>
+    <select name="" id="" class="select2" data-ajax="./json/select.json">
+    </select>
+    <div>远程数据 默认选中</div>
+    <select name="" id="" class="select3" data-key="1" data-ajax="./json/select.json">
+    </select>
+    <div>动态改变数据</div>
+    <select name="" id="" class="select4" data-key="2">
+    </select>
+</body>
+</html>

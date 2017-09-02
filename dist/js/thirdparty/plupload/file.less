@@ -1,0 +1,89 @@
+.files{
+    margin-top: 10px;
+
+    .file-item{
+        position: relative;
+        float: left;
+        width: 170px;
+        height: 26px;
+        border: 1px solid #f5f5f5;
+        background-color: #f5f5f5;
+        margin-right: 10px;
+        margin-bottom: 10px;
+        &:hover{
+            cursor: default;
+        }
+        &.active{
+            border-color: #ff8800;
+            input{
+                display: block;
+            }
+            span{
+                display: none;
+            }
+        }
+        input{
+            outline: none;
+            display: none;
+            float: left;
+            width: 140px;
+            padding-left: 10px;
+            line-height: 24px;
+            font-size: 12px;
+            color: #4c4c4c;
+            border: 0;
+            background-color: transparent;
+        }
+        span{
+            float: left;
+            width: 140px;
+            padding-left: 10px;
+            line-height: 26px;
+            font-size: 12px;
+            color: #4c4c4c;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            cursor: default;
+        }
+        .del{
+            position: absolute;
+            top: 9px;
+            right: 10px;
+            width: 12px;
+            height: 12px;
+            overflow: hidden;
+            line-height: 9px;
+            text-align: center;
+            color: #333;
+            font-size: 12px;
+            font-family: "Microsoft yahei";
+            text-decoration: none;
+            // background: url("../images/del-file.png");
+        }
+    }
+
+    .loading-bg,
+    .loading-speed{
+        position: absolute;
+        width: 200px;
+        height: 10px;
+        left: 160px;
+        top: 9px;
+        line-height: 0;
+        overflow: hidden;
+    }
+
+    .loading-bg{
+        background-color: #d9d9d9;
+    }
+    .loading-speed{
+        width: 0px;
+        background-color: #ff8a00;
+    }
+    
+    .file-item{
+        float: none;
+        width: 395px;
+    }
+}

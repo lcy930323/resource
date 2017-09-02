@@ -1,0 +1,16 @@
+
+// 清除浮动
+.clearfix {
+    *zoom: 1;
+    &:before,
+    &:after {
+        display: table;
+        height: 0;
+        overflow: hidden;
+        content: " ";
+        clear: both;
+    }
+    &:after {
+        clear: both;
+    }
+}

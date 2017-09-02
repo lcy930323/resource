@@ -1,0 +1,98 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>日历插件</title>
+    <link rel="stylesheet" href="../css/base.css"/>
+    <script src="../js/lib/jquery-1.11.1.min.js"></script>
+    <script src="../js/lib/sea.js"></script>
+    <script>
+        seajs.config({
+            base : '../js'
+        })
+        $(function(){
+            seajs.use('plugin/calendar.js',function(){
+                $('.calendar1').calendar({
+                    displayCount : 2,
+                    showOther : true
+                });
+                $('.calendar2').calendar({
+                    showTime : true,
+                    displayCount : 2
+                });
+                $('.calendar3').calendar({
+                    type : 'multiple'
+                });
+
+                /*
+                *
+                 // 默认配置
+                 type: 'single',   //multiple single
+
+                 maxYear: '2020',
+                 minYear: '2000',
+
+                 maxMonth: '12',
+                 minMonth: '3',
+
+                 maxDay: '12',
+                 minDay: '3',
+
+                 maxDate: null,
+                 minDate: null,
+
+                 // 显示上月
+                 showOther : false,
+
+                 // 默认20年前后
+                 defaultMaxDate: new Date().getTime() + 20 * 365 * 24 * 60 * 60 * 1000,
+                 defaultMinDate: new Date().getTime() - 20 * 365 * 24 * 60 * 60 * 1000,
+
+                 // 是否显示时间
+                 showTime: false,
+
+                 format : "YYYY-MM-DD",
+
+                 formatRange : "{1} 至 {2}",
+
+                 firstWeek : 6,
+
+                 displayCount : 1,
+
+                 selectClose : true,
+
+                 hackTop   : -1,
+
+                 // 时分秒步长
+                 hoursStep   : 1,
+                 minutesStep : 1,
+                 secondsStep : 15,
+
+                 weekText  : ['一','二','三','四','五','六','日'],
+
+                 monthText : ['','一月','二月','三月','四月','五月','六月','七月','八月','九月','十月','十一月','十二月'],
+
+                 // 接口
+                 onSelected : null
+                * */
+            });
+        })
+    </script>
+    <style>
+        .wrap {
+            width: 500px;
+            margin: auto;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="wrap">
+        <p> 需要要服务器环境下操作 </p>
+        <p>默认日历：<input class="calendar1" style="width: 208px;" type="text"/></p>
+        <p>时间日历：<input class="calendar2" style="width: 208px;" type="text"/></p>
+        <p>范围日历：<input class="calendar3" style="width: 208px;" type="text"/></p>
+    </div>
+
+</body>
+</html>

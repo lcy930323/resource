@@ -1,0 +1,28 @@
+
+
+.fixed{
+    position: fixed;
+    _position: absolute;
+
+    .top( @px:0px ){
+        top: @px;
+        _top:~'expression(eval(document.documentElement.scrollTop+'unit(@px)~"))"
+    }
+    .left( @px:0px ){
+        left: @px;
+        _left:~'expression(eval(document.body.scrollLeft+'unit(@px)~"))";
+        & when (@px = 50%){
+            _left:~'expression(eval(document.body.scrollLeft+document.documentElement.clientWidth/2)+9)'
+        }
+    }
+
+    .right( @px:0px ){
+        right: @px;
+        _left:~"expression(eval(document.documentElement.scrollLeft+document.documentElement.clientWidth-this.offsetWidth)-(parseInt(this.currentStyle.marginLeft,10)||0)-(parseInt(this.currentStyle.marginRight,10)||0)-"unit(@px)~")";
+    }
+
+    .bottom( @px:0px ){
+        bottom: @px;
+        _top:~"expression(eval(document.documentElement.scrollTop+document.documentElement.clientHeight-this.offsetHeight-(parseInt(this.currentStyle.marginTop,10)||0)-(parseInt(this.currentStyle.marginBottom,10)||0)-"unit(@px)~"))";
+    }
+}

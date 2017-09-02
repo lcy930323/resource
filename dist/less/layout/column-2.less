@@ -1,0 +1,22 @@
+
+.column-row( @leftWidth:100px ){
+    position: relative;
+    padding-left: @leftWidth + 10;
+    margin-bottom: 10px;
+    .row-left{
+        position: absolute;
+        top: 0;
+        left: 0;
+        text-align: right;
+        width: @leftWidth;
+        height: 100%;
+    }
+    .row-right{
+
+    }
+}
+
+
+.row{
+    .column-row();
+}

@@ -1,0 +1,47 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <script src="../../dest/lib/sea.js"></script>
+    <script src="../../dest/lib/seajs-text.js"></script>
+    <script>
+        seajs.config({
+            alias : {
+                'jquery' : '../../dest/lib/jquery'
+            }
+        })
+
+        var year = {
+            "name": "上一年度",
+            "type": "line",
+            "data": ["9199999.00", "10199999.00", "11199999.00", "12199999.00", "13199999.00", "14199999.00", "15199999.00", "0.00", "0.00", "0.00", "0.00", "0.00"]
+        };
+
+        seajs.use('./echarts',function(echarts){
+            var dom = document.getElementById('charts');
+            var charts = new echarts(dom);
+            charts.show();
+            // bind event
+            charts.on('LEGEND_SELECTED',function( param ){
+                
+            });
+
+            var c1 = document.getElementById('c1');
+            c1.onchange = function(){
+                if( this.checked ){
+                    charts.option.series.push( year )
+                    charts.show();
+                }else {
+                    charts.option.series.splice( charts.option.series.length-1 ,1 )
+                    charts.show();
+                }
+            }
+        })
+    </script>
+</head>
+<body>
+    <label for="c1">上一年度</label><input type="checkbox" id='c1'>
+    <div id="charts" style="width:1200px;height: 400px;"></div>
+</body>
+</html>

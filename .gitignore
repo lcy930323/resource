@@ -44,7 +44,6 @@ Temporary Items
 .apdisk
 
 .build
-dist
 node_modules
 Gruntfile.js
 package.json

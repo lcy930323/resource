@@ -1,0 +1,28 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <script src="../../dest/lib/sea.js"></script>
+    <script>
+
+        seajs.use('./faustcplus',function(faustcplus){
+
+            var f1 = new faustcplus({
+                id  : 'uploadImg',
+                uploadUrl : './faustcplus.php',         // 服务器地址
+                flash : './flash/FaustCplus.swf',
+                installFlash : './flash/expressInstall.swf',
+                success : function( data ){
+                    // 上传成功的回调
+                }
+            });
+            f1.show();
+        })
+
+    </script>
+</head>
+<body>
+    <div id="uploadImg"></div>
+</body>
+</html>

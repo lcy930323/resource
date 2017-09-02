@@ -1,0 +1,42 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <script src="../../dest/lib/sea.js"></script>
+    <link rel="stylesheet" href="file.css"/>
+    <script>
+        seajs.config({
+            base : '../../',
+            alias : {
+                'jquery' : 'dest/lib/jquery.js',
+                'underscore' : 'dest/lib/underscore.js',
+                'util' : 'dest/lib/underscore.bee.js'
+            }
+        })
+    </script>
+    <script>
+        seajs.use('./plupload',function(upload){
+            var up = new upload({
+                id  : 'upload',              // 容器ID
+                wrapId : 'file',
+                uploadUrl : './upload.php',
+                uploadError : function( plupload, msg ){
+                    console.log( msg.message ) // 上传时出错
+                },
+                uploadSuccess : function( data ){
+                    console.log( data )  //上传成功
+                },
+                serverError : function( data ){
+                    console.log( data )  //服务器错误
+                }
+            });
+            up.init();
+        })
+    </script>
+</head>
+<body>
+<a id="upload" href="javascript:;">上传</a>
+<div class="files" id="file"></div>
+</body>
+</html>
