@@ -52,7 +52,7 @@ define(function (require, exports, module) {
         ajaxUrl: null,
         // ajaxDom属性
         ajaxUrlKey: 'data-ajax',
-        // ajaxDom属性
+        // ajaxMethod属性
         ajaxMethodKey: 'data-method',
         // ajax返回的键
         dataKey: 'key',
@@ -136,12 +136,13 @@ define(function (require, exports, module) {
                     options = this.options;
 
                 url = options.ajaxUrl || this.el.getAttribute(options.ajaxUrlKey);
-                method = options.method || this.el.getAttribute(options.ajaxMethodKey);
+                method = options.method || this.el.getAttribute(options.ajaxMethodKey) || method;
                 if (typeof url !== 'string') return false;
 
                 if ($.isFunction(options.ajaxData)) {
                     data = options.ajaxData.call(this);
                 }
+            
 
                 $.ajax(url, {
                     "type": method,
